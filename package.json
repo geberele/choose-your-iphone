@@ -1,0 +1,33 @@
+{
+  "name": "choose-your-iphone",
+  "version": "1.0.0",
+  "description": "Choose your iPhone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify js/src/App.js -o js/dist/choose-your-iphone.js --debug -t [ babelify --presets [ env react ] ]"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geberele/choose-your-iphone.git"
+  },
+  "author": "GM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geberele/choose-your-iphone/issues"
+  },
+  "homepage": "https://geberele.github.io/choose-your-iphone",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "browserify": "^16.1.0",
+    "lodash": "^4.17.10",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0"
+  }
+}
