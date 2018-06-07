@@ -43,14 +43,14 @@
     width: 45%;
 
     span {
-      color: #e60000;
+      color: #E60000;
       font-size: 30px;
       font-weight: bold;
     }
   }
 
   &__price-line {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #CCC;
     display: inline-block;
     float: left;
     height: 90px;
@@ -97,7 +97,7 @@
 }
 
 .checkmark {
-  background-color: #eee;
+  background-color: #EEE;
   border-radius: 20%;
   left: 0;
   height: 30px;
@@ -109,7 +109,7 @@
 }
 
 .container:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: #CCC;
 }
 
 .checkmark:after {
