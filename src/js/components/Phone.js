@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import _ from 'lodash'
+import StarRating from 'react-star-review'
 
 class Phone extends React.Component {
 
@@ -100,32 +101,32 @@ class Phone extends React.Component {
    */
   render() {
     const {groupName, rating, phoneSelected, colourSelected, memorySelected} = this.state
-    console.log(phoneSelected)
 
     var colours = this.getColours(),
       capacities = this.getCapacities(),
       radioColours = [], radioCapacities = []
 
     _.each(colours, (colour, index) => {
+      let style = {backgroundColor: colour.colourHex}
       radioColours[index] = (
-        <label key={index}>
+        <label key={index} className="container">
           <input type="radio" id="contactChoice1"
                  name="colour" value={colour.colourName}
                  checked={colourSelected === colour.colourName}
                  onChange={this.handleColourChange} />
-          {colour.colourName}
+          <span className="checkmark" style={style}></span>
         </label>
       )
     })
 
     _.each(capacities, (capacity, index) => {
       radioCapacities[index] = (
-        <label key={index}>
+        <label key={index} className="container">
           <input type="radio" id="contactChoice133"
                  name="capacity" value={capacity.memory}
                  checked={memorySelected === capacity.memory}
                  onChange={this.handleCapacityChange} />
-          {capacity.memory}
+          <span className="checkmark">{capacity.memory.substring(0, capacity.memory.length - 2)}</span>
         </label>
       )
     })
@@ -148,24 +149,33 @@ class Phone extends React.Component {
           <div className="phone__image">
             <img src={phoneSelected.merchandisingMedia[0]['value']} />
           </div>
-          <div className="phone__group-name">{groupName}</div>
-          <div className="phone__rating">{rating}</div>
-          <div className="phone__desc">{phoneSelected.displayDescription}</div>
-          <form>
-            <div>
-              Colour: {colourSelected}
-              {radioColours}
+          <div className="phone__info">
+            <div className="phone__group-name">{groupName}</div>
+            <div className="phone__rating">
+              <StarRating
+                rating={rating}
+              />
             </div>
-            <div>
-              Capacity: {memorySelected}
-              {radioCapacities}
+            <div className="phone__desc">{phoneSelected.displayDescription}</div>
+            <form>
+              <div className="radio-field">
+                <div className="radio-field__title">Colour: <span>{colourSelected}</span></div>
+                {radioColours}
+              </div>
+              <div className="radio-field">
+                <div className="radio-field__title">Capacity: <span>{memorySelected}</span></div>
+                {radioCapacities}
+              </div>
+            </form>
+            <div className="phone__price-wrapper">
+              <div className="phone__price">
+                from <span>£{phoneSelected.priceInfo.hardwarePrice.oneOffPrice.gross}</span> upfront cost
+              </div>
+              <span className="phone__price-line"></span>
+              <div className="phone__price">
+                When you pay <span>£{phoneSelected.priceInfo.bundlePrice.monthlyPrice.gross}</span> a month
+              </div>
             </div>
-          </form>
-          <div>
-            from £ {phoneSelected.priceInfo.hardwarePrice.oneOffPrice.gross} upfront cost
-          </div>
-          <div>
-            When you pay £ {phoneSelected.priceInfo.bundlePrice.monthlyPrice.gross} a month
           </div>
         </div>
       )
